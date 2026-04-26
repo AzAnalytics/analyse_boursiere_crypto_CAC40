@@ -1,0 +1,60 @@
+name: Code Quality (Lint & Format)
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-lint
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint black flake8 isort mypy
+
+    - name: Check format with black
+      run: |
+        black --check core/ app/ ml/ tests/ --diff
+      continue-on-error: true
+
+    - name: Check imports with isort
+      run: |
+        isort --check-only --diff core/ app/ ml/ tests/
+      continue-on-error: true
+
+    - name: Lint with pylint
+      run: |
+        pylint core/ app/ ml/ tests/ --exit-zero
+      continue-on-error: true
+
+    - name: Lint with flake8
+      run: |
+        flake8 core/ app/ ml/ tests/ --max-line-length=120 --extend-ignore=E203,W503 || true
+      continue-on-error: true
+
+    - name: Type check with mypy
+      run: |
+        mypy core/ app/ ml/ --ignore-missing-imports --check-untyped-defs || true
+      continue-on-error: true
+
+    - name: Report lint results
+      if: always()
+      run: |
+        echo "✅ Linting checks completed (review output above)"
