@@ -167,11 +167,15 @@ def data_table(df: pd.DataFrame, title: str = "", height: int = 400):
 # CHARTS
 # ============================================================================
 
-def line_chart(df: pd.DataFrame, x: str, y: str, title: str = "", 
+def line_chart(df: pd.DataFrame, x: str, y: str, title: str = "",
                height: int = 400, show_legend: bool = True):
     """Graphique linéaire moderne."""
+    # Reset index if x is the index name
+    if df.index.name == x:
+        df = df.reset_index()
+
     fig = go.Figure()
-    
+
     fig.add_trace(go.Scatter(
         x=df[x],
         y=df[y],
@@ -194,11 +198,15 @@ def line_chart(df: pd.DataFrame, x: str, y: str, title: str = "",
     st.plotly_chart(fig, use_container_width=True)
 
 
-def bar_chart(df: pd.DataFrame, x: str, y: str, title: str = "", 
+def bar_chart(df: pd.DataFrame, x: str, y: str, title: str = "",
               height: int = 400, orientation: str = 'v'):
     """Graphique en barres moderne."""
+    # Reset index if x is the index name
+    if df.index.name == x:
+        df = df.reset_index()
+
     fig = go.Figure()
-    
+
     if orientation == 'v':
         fig.add_trace(go.Bar(
             x=df[x],

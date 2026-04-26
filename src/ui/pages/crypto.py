@@ -117,17 +117,17 @@ def show():
     with col1:
         # Graphique de prix
         line_chart(
-            df.set_index('Date'),
+            df,
             x='Date',
             y='Close',
             title="Évolution du prix",
             height=400
         )
-    
+
     with col2:
         # Volume
         bar_chart(
-            df.set_index('Date'),
+            df,
             x='Date',
             y='Volume',
             title="Volume d'échange",

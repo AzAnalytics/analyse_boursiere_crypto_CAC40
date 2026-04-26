@@ -1,0 +1,58 @@
+# Phase 3 Requirements - Python 3.14 Compatible
+# Created: 2026-04-26
+
+# ============================================
+# Data Processing & Analysis
+# ============================================
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# ============================================
+# Visualization
+# ============================================
+matplotlib>=3.8.0
+plotly>=5.14.0
+
+# ============================================
+# Web Framework
+# ============================================
+streamlit>=1.28.0
+streamlit-elements>=0.1.0
+
+# ============================================
+# Data Fetching & HTTP
+# ============================================
+requests>=2.31.0
+yfinance>=1.3.0
+python-dotenv>=1.0.0
+
+# ============================================
+# Data Storage & Serialization
+# ============================================
+pyarrow>=14.0.0
+
+# ============================================
+# Machine Learning & Forecasting
+# ============================================
+scikit-learn>=1.3.0
+
+# Time Series Analysis
+statsmodels>=0.14.0
+pmdarima>=2.0.3
+
+# Prophet (Meta's forecasting library)
+# Note: Prophet 1.3+ has broader Python support
+cmdstanpy>=1.2.0
+prophet>=1.3.0
+
+# ============================================
+# Optional: For advanced LSTM (PyTorch alternative to TensorFlow)
+# ============================================
+# torch>=2.0.0  # Uncomment if you want LSTM with PyTorch
+# torchvision>=0.15.0  # For vision tasks
+
+# ============================================
+# Utilities
+# ============================================
+python-dateutil>=2.8.2

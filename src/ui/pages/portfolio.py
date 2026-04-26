@@ -139,8 +139,8 @@ def show():
     perf_df = pd.DataFrame({
         'Date': dates,
         'Valeur': portfolio_values
-    }).set_index('Date')
-    
+    })
+
     line_chart(
         perf_df,
         x='Date',

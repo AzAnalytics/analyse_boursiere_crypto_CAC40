@@ -107,7 +107,7 @@ def show():
         df = pd.DataFrame({
             'Date': dates,
             'Price': historical_values
-        }).set_index('Date')
+        })
         
         # Générer prédictions par modèle
         future_dates = pd.date_range(start=dates[-1], periods=forecast_days, freq='D')
@@ -142,7 +142,7 @@ def show():
             'Forecast': forecast,
             'Upper': upper_bound,
             'Lower': lower_bound
-        }).set_index('Date')
+        })
         
         # Métriques
         change_pct = ((forecast[-1] - current_price) / current_price) * 100
